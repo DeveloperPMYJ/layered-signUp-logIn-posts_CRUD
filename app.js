@@ -6,14 +6,13 @@ const morgan = require('morgan');
 const dotenv = require("dotenv")
 dotenv.config()
 
-const routes = require("./routes");
+const { router } = require("./src/routes");
 
 const app = express();
-
 app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json());
-app.use(routes);
+app.use(router);
 
 app.get("/", async (req, res) => {
   try {
@@ -23,6 +22,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+/* 
 app.get("/users", userService.getUsers)
 app.post("/users/signup", userService.signUp)
 app.post("/logIn", userService.logIn)
@@ -30,6 +30,7 @@ app.post ("/createpost", postService.createPost)
 app.get("/getpost", postService.getPost)
 app.delete("/deletepost", postService.deletePost)
 app.put("/updatepost", postService.updatePost)
+*/ // router의 index.js ,userRouter, postRouter 에서 있기에 필요 없음 
 
   // 서버 구동 
   const server = http.createServer(app)

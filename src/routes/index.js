@@ -1,15 +1,15 @@
 // 외부에서 들어노는 요청을 하위 폴더로 안내하는 길잡이 역할
 const express = require("express");
+
+const { userRouter } = require("./userRouter"); 
+const { postRouter } = require("./postRouter");
+
 const router = express.Router();
 
-const userRouter = require("./userRouter"); 
-const threadRouter = require("./threadRouter");
+router.use ("/users", userRouter)
+router.use ("/posts", postRouter)
 
-router.use ("/users", userRouter.router)
-router.use ("/threads", threadRouter.router)
+module.exports = {router} ;
+// 그 전 단에서 객체로 보냈기에 객체로 받아야 함 
 
-module.exports = router;
-
-
-// user가 있으면 userRouter로 보내고, 
-// threads가 있으면 threadsRouter로 보내는 역할 
+//index 에서 user 로 들어오는 거를 userRouter로 보내주고, userRouter에서 signup으로 보내고
