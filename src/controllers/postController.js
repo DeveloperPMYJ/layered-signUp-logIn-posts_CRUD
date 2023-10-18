@@ -27,7 +27,7 @@ const getPost = async (req, res) => {
 
   const { postId } = req.body;
 
-  await postService.deletePost(postId)
+  await postService.getPost(postId)
 
   return res.status(200).json({message:"POST LIST 게시물 목록 조회"}) 
   } 
